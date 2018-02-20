@@ -66,7 +66,7 @@ public class ManagerPresenter {
 
 
         try {
-            oblProducts = FXCollections.observableArrayList(orderManager.getAllOrders());
+            oblProducts = FXCollections.observableArrayList(orderManager.getAllOrdersByManager());
             oblProducts.forEach(p -> System.out.println(p.toString()));
 
         } catch (OrderQueryException ex) {
