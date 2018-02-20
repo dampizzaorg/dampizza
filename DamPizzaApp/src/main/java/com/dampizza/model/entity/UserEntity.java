@@ -177,6 +177,35 @@ public class UserEntity implements Serializable {
     public void setCredential(CredentialEntity credential) {
         this.credential = credential;
     }
+
+    /**
+     * @return the active
+     */
+    public Boolean getActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    /**
+     * @return the pizzas
+     */
+    public List<ProductEntity> getPizzas() {
+        return pizzas;
+    }
+
+    /**
+     * @param pizzas the pizzas to set
+     */
+    public void setPizzas(List<ProductEntity> pizzas) {
+        this.pizzas = pizzas;
+    }
+    
     
     
 

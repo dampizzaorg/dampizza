@@ -109,7 +109,6 @@ public class CartPresenter {
                 MobileApplication.getInstance().switchView(CUSTOMER_VIEW);
             } else {
                 new Toast("Ha ocurrido un error").show();
-                // TODO show error msg
             }
         }
     }

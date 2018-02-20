@@ -39,9 +39,9 @@ public class OrderManagerImp implements OrderManagerInterface {
         Transaction tx = null;
 
         try {
+
             tx = session.beginTransaction();
 
-            System.out.println(order.toString());
             UserEntity dealer = order.getDealer() != null
                     ? umi.getUserEntityByUsername(order.getDealer().getUsername())
                     : null;
@@ -159,9 +159,15 @@ public class OrderManagerImp implements OrderManagerInterface {
         logger.info("Getting list of all orders.");
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<OrderDTO> orderList = new ArrayList();
+        String hql = "from OrderEntity where customer.id =:id order by date";
+
         try {
-            //List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id in(select id from UserEntity where credential.username = "+user+")").list();
-            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
+//            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id in(select id from UserEntity where credential.username = "+user+")").list();
+//            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
+
+            Query query = session.createQuery(hql);
+            query.setParameter("id", umi.getSession().get("id"));
+            List<OrderEntity> orderEntities = query.list();
 
             // For each order entity create an add an orderDTO to orderList
             orderEntities.forEach(o -> orderList.add(new OrderDTO(
@@ -189,7 +195,37 @@ public class OrderManagerImp implements OrderManagerInterface {
 
     @Override
     public List<OrderDTO> getOrdersByStatus(Integer status) throws OrderQueryException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        logger.info("Getting orders by status.");
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<OrderDTO> orderList = new ArrayList();
+        String hql = "from OrderEntity where status =:status order by date";
+        try {
+            Query query = session.createQuery(hql);
+            query.setParameter("status", status);
+            List<OrderEntity> orderEntities = query.list();
+
+            // For each order entity create an add an orderDTO to orderList
+            orderEntities.forEach(o -> orderList.add(new OrderDTO(
+                    o.getId(), o.getDate(),
+                    new UserDTO(o.getId(), o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
+                            o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
+                    o.getAddress(), pmi.EntityToDTO(o.getProducts()),
+                    new UserDTO(
+                            o.getDealer() != null ? o.getDealer().getId() : null,
+                            o.getDealer() != null ? o.getDealer().getCredential().getUsername() : null,
+                            o.getDealer() != null ? o.getDealer().getName() : null,
+                            o.getDealer() != null ? o.getDealer().getSurnames() : null,
+                            o.getDealer() != null ? o.getDealer().getEmail() : null,
+                            o.getDealer() != null ? o.getDealer().getAddress() : null),
+                    o.getStatus(), o.getTotal())));
+        } catch (HibernateException e) {
+            logger.severe("An error has ocurred while getting orders:");
+            throw new OrderQueryException("Error on getAllOrders(): \n" + e.getMessage());
+        } finally {
+            session.close();
+        }
+
+        return orderList;
     }
 
     @Override

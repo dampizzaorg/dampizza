@@ -315,7 +315,7 @@ public class UserManagerImp implements UserManagerInterface {
         Integer res = 0;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
-        String hql = "from UserEntity where credential.username = :username and credential.password = :password";
+        String hql = "from UserEntity where credential.username = :username AND credential.password = :password AND active=1";
 
         try {
             tx = session.beginTransaction();
@@ -504,11 +504,11 @@ public class UserManagerImp implements UserManagerInterface {
         logger.info("Getting list of users by type.");
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<UserDTO> userList = new ArrayList();
-        String hql = "from UserEntity where credential.credentialType = :type";
+        String hql = "from UserEntity where credential.credentialType = :type AND active=1";
 
         try {
 
-            Query query = session.createQuery("from UserEntity where credential.credentialType = :type");
+            Query query = session.createQuery(hql);
             query.setParameter("type", type);
             List<UserEntity> userEntities = query.list();
             if (userEntities != null) {
@@ -530,6 +530,38 @@ public class UserManagerImp implements UserManagerInterface {
     public void resetCart() throws UserQueryException {
         SESSION.remove("cart");
         SESSION.put("cart", new OrderDTO(getUserByUsername((String) SESSION.get("username"))));
+    }
+
+    @Override
+    public Integer setActive(Long id, Boolean value) throws UserUpdateException, UserQueryException {
+        logger.log(Level.INFO, "Updating user <{0}> active to <{1}>", new Object[]{id, value});
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Integer res = 0;
+
+        try {
+            tx = session.beginTransaction();
+            UserEntity userToUpdate = (UserEntity) session.get(UserEntity.class, id);
+
+            if (userToUpdate != null) {
+                userToUpdate.setActive(value);
+                session.update(userToUpdate);
+                res = 1;
+            } else {
+                res = 2;
+            }
+
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            logger.log(Level.SEVERE, "An error has ocurred while updating order<{0}>:", id);
+            throw new UserUpdateException("Error on updateStatus(): \n" + e.getMessage());
+        } finally {
+            session.close();
+        }
+        return res;
     }
     
 }
