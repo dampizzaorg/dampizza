@@ -65,12 +65,14 @@ public class HistoryPresenter implements Initializable {
                 appBar.setTitleText("History");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
                         System.out.println("Search")));
-                
+                 omi = new OrderManagerImp();
+                initClassic();
             }
         });
        
-        omi = new OrderManagerImp();
+    }
      
+     public void initClassic() {
         try {
             oblOrders = FXCollections.observableArrayList(omi.getAllOrdersByUser());
         } catch (OrderQueryException ex) {
