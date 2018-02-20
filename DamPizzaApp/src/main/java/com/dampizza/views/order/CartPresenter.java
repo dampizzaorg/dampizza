@@ -7,6 +7,9 @@ import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.dampizza.App;
+import static com.dampizza.App.CUSTOMER_VIEW;
+import static com.dampizza.App.ORDER_CREATE_VIEW;
+import com.dampizza.DrawerManager;
 import com.dampizza.cfg.AppConstants;
 import com.dampizza.exception.order.OrderCreateException;
 import com.dampizza.exception.order.OrderQueryException;
@@ -16,9 +19,11 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.ProductManagerImp;
 import com.dampizza.util.LogicFactory;
+import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.CharmListCell;
 import com.gluonhq.charm.glisten.control.CharmListView;
 import com.gluonhq.charm.glisten.control.ListTile;
+import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.Toast;
 import java.util.Date;
 import java.util.logging.Level;
@@ -37,6 +42,7 @@ import javafx.scene.image.ImageView;
  */
 public class CartPresenter {
 
+    private static final Logger logger = Logger.getLogger(CartPresenter.class.getName());
     private OrderDTO cart;
     private ObservableList<ProductDTO> oblCartProducts;
 
@@ -83,13 +89,14 @@ public class CartPresenter {
 
     /**
      * Create order as long as the cart is not empty.
+     *
      * @throws OrderCreateException
      * @throws OrderQueryException
-     * @throws UserQueryException 
+     * @throws UserQueryException
      */
     @FXML
     public void btnConfirmAction() throws OrderCreateException, OrderQueryException, UserQueryException {
-        if (lvCart.itemsProperty().size()>0) {
+        if (lvCart.itemsProperty().size() > 0) {
             Integer res = LogicFactory.getOrderManager().createOrder(cart);
 
             if (res == 1) {
@@ -97,6 +104,9 @@ public class CartPresenter {
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");
                 initCartView();
                 new Toast("Pedido realizado exitosamente").show();
+                
+                // Go back to main page
+                MobileApplication.getInstance().switchView(CUSTOMER_VIEW);
             } else {
                 new Toast("Ha ocurrido un error").show();
                 // TODO show error msg
@@ -129,7 +139,7 @@ public class CartPresenter {
         // Disable button if tv is empty (Using bindings)
         btnConfirm.disableProperty().bind(lvCart.itemsProperty().emptyProperty());
         //btnDelete.disableProperty().bind(lvCart.itemsProperty().emptyProperty());
-        
+
         // Disable/Enable btnDelete on tableview selection change
         lvCart.selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
