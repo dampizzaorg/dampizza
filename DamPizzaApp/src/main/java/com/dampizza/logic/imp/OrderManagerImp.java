@@ -197,13 +197,18 @@ public class OrderManagerImp implements OrderManagerInterface {
 				
             // For each order entity create an add an orderDTO to orderList
             orderEntities.forEach(o -> orderList.add(new OrderDTO(
-            		o.getId(),o.getDate(), 
-                    new UserDTO(o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
-                                o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
-                            o.getAddress(), pmi.EntityToDTO(o.getProducts()), 
-                    new UserDTO(o.getDealer().getCredential().getUsername(), o.getDealer().getName(),
-                                o.getDealer().getSurnames(), o.getDealer().getEmail(), 
-                                o.getDealer().getAddress()), o.getStatus())));
+            		o.getId(), o.getDate(),
+                    new UserDTO(o.getId(), o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
+                            o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
+                    o.getAddress(), pmi.EntityToDTO(o.getProducts()),
+                    new UserDTO(
+                            o.getDealer() != null ? o.getDealer().getId() : null,
+                            o.getDealer() != null ? o.getDealer().getCredential().getUsername() : null,
+                            o.getDealer() != null ? o.getDealer().getName() : null,
+                            o.getDealer() != null ? o.getDealer().getSurnames() : null,
+                            o.getDealer() != null ? o.getDealer().getEmail() : null,
+                            o.getDealer() != null ? o.getDealer().getAddress() : null),
+                    o.getStatus(), o.getTotal())));
         } catch (HibernateException e) {
             logger.severe("An error has ocurred while getting orders:");
             throw new OrderQueryException("Error on getAllOrders(): \n" + e.getMessage());
@@ -224,13 +229,18 @@ public class OrderManagerImp implements OrderManagerInterface {
 				
             // For each order entity create an add an orderDTO to orderList
             orderEntities.forEach(o -> orderList.add(new OrderDTO(
-            		o.getId(),o.getDate(), 
-                    new UserDTO(o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
-                                o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
-                            o.getAddress(), pmi.EntityToDTO(o.getProducts()), 
-                    new UserDTO(o.getDealer().getCredential().getUsername(), o.getDealer().getName(),
-                                o.getDealer().getSurnames(), o.getDealer().getEmail(), 
-                                o.getDealer().getAddress()), o.getStatus())));
+            		o.getId(), o.getDate(),
+                    new UserDTO(o.getId(), o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
+                            o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
+                    o.getAddress(), pmi.EntityToDTO(o.getProducts()),
+                    new UserDTO(
+                            o.getDealer() != null ? o.getDealer().getId() : null,
+                            o.getDealer() != null ? o.getDealer().getCredential().getUsername() : null,
+                            o.getDealer() != null ? o.getDealer().getName() : null,
+                            o.getDealer() != null ? o.getDealer().getSurnames() : null,
+                            o.getDealer() != null ? o.getDealer().getEmail() : null,
+                            o.getDealer() != null ? o.getDealer().getAddress() : null),
+                    o.getStatus(), o.getTotal())));
         } catch (HibernateException e) {
             logger.severe("An error has ocurred while getting orders:");
             throw new OrderQueryException("Error on getAllOrders(): \n" + e.getMessage());
