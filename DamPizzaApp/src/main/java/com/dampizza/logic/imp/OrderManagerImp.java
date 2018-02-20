@@ -193,7 +193,7 @@ public class OrderManagerImp implements OrderManagerInterface {
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<OrderDTO> orderList = new ArrayList();
         try {
-            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where dealer.id = "+UserManagerImp.getSESSION().get("id")+" order by date").list();
+            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where dealer.id = "+umi.getSession().get("id")+" order by date").list();
 				
             // For each order entity create an add an orderDTO to orderList
             orderEntities.forEach(o -> orderList.add(new OrderDTO(
