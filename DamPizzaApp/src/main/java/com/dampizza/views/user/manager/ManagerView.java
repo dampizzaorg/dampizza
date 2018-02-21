@@ -1,5 +1,6 @@
 package com.dampizza.views.user.manager;
 
+import com.dampizza.App;
 import com.dampizza.views.login.*;
 import com.gluonhq.charm.glisten.mvc.View;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class ManagerView {
     public View getView() {
         try {
 
-            View view = FXMLLoader.load(ManagerView.class.getResource("/com/dampizza/views/user/manager/manager_main.fxml"));
+            View view = FXMLLoader.load(ManagerView.class.getResource("/com/dampizza/views/user/manager/manager_main.fxml"), App.getBundle());
 
             view.setName(name);
             return view;

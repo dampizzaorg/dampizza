@@ -5,7 +5,7 @@
  */
 package com.dampizza.views.user.manager;
 
-import com.dampizza.views.custom.userList;
+import com.dampizza.views.custom.UserCLV;
 import com.dampizza.App;
 import static com.dampizza.App.MANAGER_ADD_DEALER_VIEW;
 import static com.dampizza.App.MANAGER_VIEW;
@@ -76,7 +76,7 @@ public class ManagerDealerPresenter {
                 appBar.setTitleText("Repartidores");
 
                 try {
-                    lvDealers.setCellFactory(p -> new userList());
+                    lvDealers.setCellFactory(p -> new UserCLV());
                     oblUsers = FXCollections.observableArrayList(LogicFactory.getUserManager().getUsersByType(AppConstants.USER_DEALER));
                     oblUsers.forEach(u -> System.out.println(u.getId()));
                     

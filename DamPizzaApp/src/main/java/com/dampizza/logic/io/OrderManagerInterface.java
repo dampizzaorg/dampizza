@@ -87,7 +87,10 @@ public interface OrderManagerInterface {
      */
     public List<OrderDTO> getAllOrdersByUser() throws OrderQueryException;
     
+    /**
+     * Get orders by dealer(delivery man)
+     * @return OrderDTO List
+     * @throws OrderQueryException 
+     */
     public List<OrderDTO> getAllOrdersByDealer() throws OrderQueryException;
-    
-    public List<OrderDTO> getAllOrdersByManager() throws OrderQueryException;
 }

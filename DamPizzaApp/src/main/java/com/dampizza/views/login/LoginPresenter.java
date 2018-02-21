@@ -104,7 +104,8 @@ public class LoginPresenter {
                 loginItem = new ViewItem("Login", MaterialDesignIcon.HOME.graphic(), CUSTOMER_VIEW, ViewStackPolicy.SKIP);
             }else if (status==AppConstants.USER_MANAGER){
                  logger.info("Manager User");
-                loginItem = new ViewItem("Login", MaterialDesignIcon.HOME.graphic(),MANAGER_VIEW, ViewStackPolicy.SKIP); 
+                loginItem = new ViewItem("Login", MaterialDesignIcon.HOME.graphic(),MANAGER_VIEW, ViewStackPolicy.SKIP);
+                //MobileApplication.getInstance().switchView(MANAGER_VIEW);
             }else if (status==AppConstants.USER_DEALER){
                 logger.info("Dealer User");
                 loginItem = new ViewItem("Login", MaterialDesignIcon.HOME.graphic(), DEALER_VIEW, ViewStackPolicy.SKIP);

@@ -122,11 +122,16 @@ public class UserDTO {
     
     
 
+//    @Override
+//    public String toString() {
+//        return "username: " + this.getUsername() + ", name: " + this.getName()
+//                + ", surnames: " + this.getSurnames() + ", email: " + this.getEmail()
+//                + ", address: " + this.getAddress();
+//    }
+    
     @Override
     public String toString() {
-        return "username: " + this.getUsername() + ", name: " + this.getName()
-                + ", surnames: " + this.getSurnames() + ", email: " + this.getEmail()
-                + ", address: " + this.getAddress();
+        return this.getId()+", "+this.getName()+", "+this.getSurnames();
     }
 
     /**
