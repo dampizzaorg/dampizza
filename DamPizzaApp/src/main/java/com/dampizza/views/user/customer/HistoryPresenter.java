@@ -45,8 +45,6 @@ public class HistoryPresenter implements Initializable {
     private CharmListView<OrderDTO, ? extends Comparable> lvOrders;
     @FXML
     private View primary;
-    
-    
 
     /**
      * Initializes the controller class.
@@ -54,40 +52,40 @@ public class HistoryPresenter implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-       primary.showingProperty().addListener((obs, oldValue, newValue) -> {
+        primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
-                
+
                 appBar.setVisible(true);
-                
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
+
+                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
+                        -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
                 appBar.setTitleText("History");
-                appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
-                        System.out.println("Search")));
-                 omi = new OrderManagerImp();
+                appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e
+                        -> System.out.println("Search")));
+                omi = new OrderManagerImp();
                 initClassic();
             }
         });
-       
+
     }
-     
-     public void initClassic() {
+
+    public void initClassic() {
         try {
             oblOrders = FXCollections.observableArrayList(omi.getAllOrdersByUser());
         } catch (OrderQueryException ex) {
             Logger.getLogger(HistoryPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
-       if(oblOrders!=null){
-       lvOrders.setItems(oblOrders);
-       lvOrders.setCellFactory(p -> new historyList());
-       lvOrders.selectedItemProperty().addListener((obs,ov,nv) ->{
-           //Cargar la order en una constante
-           App.setCurrentOrder(lvOrders.getSelectedItem());
-           NavigationDrawer.ViewItem Item = new NavigationDrawer.ViewItem("Select", MaterialDesignIcon.HOME.graphic(), HISTORY_DETAIL, ViewStackPolicy.SKIP);
-           DrawerManager drawer = new DrawerManager(); 
-           drawer.updateView(Item); 
-       });
+        if (oblOrders != null) {
+            lvOrders.setItems(oblOrders);
+            lvOrders.setCellFactory(p -> new historyList());
+            lvOrders.selectedItemProperty().addListener((obs, ov, nv) -> {
+                //Cargar la order en una constante
+                App.setCurrentOrder(lvOrders.getSelectedItem());
+                NavigationDrawer.ViewItem Item = new NavigationDrawer.ViewItem("Select", MaterialDesignIcon.HOME.graphic(), HISTORY_DETAIL, ViewStackPolicy.SKIP);
+                DrawerManager drawer = new DrawerManager();
+                drawer.updateView(Item);
+            });
         }
-    }     
+    }
 }

@@ -163,12 +163,12 @@ public class OrderManagerImp implements OrderManagerInterface {
         logger.info("Getting list of all orders.");
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<OrderDTO> orderList = new ArrayList();
-        String hql = "from OrderEntity where customer.id =:id order by date";
+        String hql = "from OrderEntity where customer.id =:id";
 
         try {
 //            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id in(select id from UserEntity where credential.username = "+user+")").list();
 //            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
-
+            System.out.println(umi.getSession().get("id"));
             Query query = session.createQuery(hql);
             query.setParameter("id", umi.getSession().get("id"));
             List<OrderEntity> orderEntities = query.list();
@@ -180,13 +180,7 @@ public class OrderManagerImp implements OrderManagerInterface {
                         new UserDTO(o.getId(), o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
                                 o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
                         o.getAddress(), pmi.EntityToDTO(o.getProducts()),
-                        new UserDTO(
-                                o.getDealer() != null ? o.getDealer().getId() : null,
-                                o.getDealer() != null ? o.getDealer().getCredential().getUsername() : null,
-                                o.getDealer() != null ? o.getDealer().getName() : null,
-                                o.getDealer() != null ? o.getDealer().getSurnames() : null,
-                                o.getDealer() != null ? o.getDealer().getEmail() : null,
-                                o.getDealer() != null ? o.getDealer().getAddress() : null),
+                        null,
                         o.getStatus(), o.getTotal())));
             }
 

@@ -45,6 +45,8 @@ import javafx.scene.control.PasswordField;
 public class LoginPresenter {
 
     private static final Logger logger = Logger.getLogger(LoginPresenter.class.getName());
+    
+    
     // <editor-fold defaultstate="collapsed" desc="@FXML NODES">    
     @FXML
     private View primary;
@@ -82,6 +84,8 @@ public class LoginPresenter {
                         -> System.out.println("Search")));
                 appBar.setTitleText("Login");
 
+                LogicFactory.getUserManager().getSession().clear();
+                
                 ivDampizza.setImage(new Image("/img/pizza_avatar_128.png"));
             }
         });
@@ -111,12 +115,13 @@ public class LoginPresenter {
                 loginItem = new ViewItem("Login", MaterialDesignIcon.HOME.graphic(), DEALER_VIEW, ViewStackPolicy.SKIP);
             }
             //Inicialize a menu depending on the user.
-            DrawerManager drawer = new DrawerManager(status);
+            DrawerManager drawer = new DrawerManager();
             //Clean the fields
             tfUsername.setText("");
             tfPassword.setText("");
             //Update view with previus item
             drawer.updateView(loginItem);
+            //MobileApplication.getInstance().switchView(MANAGER_VIEW);
         } else {
             logger.info("Login failed.");
         }

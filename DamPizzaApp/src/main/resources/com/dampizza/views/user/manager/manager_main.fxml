@@ -12,39 +12,39 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<View fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dampizza.views.user.manager.ManagerPresenter">
+<View fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dampizza.views.user.manager.ManagerPresenter">
    <top>
       <VBox alignment="TOP_CENTER" prefHeight="651.0" prefWidth="350.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane maxHeight="480.0" minHeight="480.0" prefHeight="480.0" prefWidth="350.0" style="-fx-tab-min-width: 60;" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane" maxHeight="480.0" minHeight="480.0" prefHeight="480.0" prefWidth="350.0" style="-fx-tab-min-width: 60;" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab id="tabPizzas" fx:id="tabPrep" onSelectionChanged="#loadPrep" text="%dampizza.views.manager.tab.prep">
+                <Tab id="tabPrep" fx:id="tabPrep" text="%dampizza.views.manager.tab.prep">
                      <content>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <ScrollPane hbarPolicy="NEVER">
                                  <content>
-                                    <CharmListView id="lvClassic" fx:id="lvPrep" prefHeight="562.0" prefWidth="350.0" />
+                                    <CharmListView id="lvPrep" fx:id="lvPrep" prefHeight="562.0" prefWidth="350.0" />
                                  </content>
                               </ScrollPane>
                            </children>
                         </VBox>
                      </content>
                 </Tab>
-                <Tab id="tabBebidas" fx:id="tabOnDelivery" onSelectionChanged="#loadOnDelivery" text="%dampizza.views.manager.tab.ondelivery">
+                <Tab id="tabOnDelivery" fx:id="tabOnDelivery" onSelectionChanged="#loadOnDelivery" text="%dampizza.views.manager.tab.ondelivery">
                      <content>
                         <ScrollPane hbarPolicy="NEVER">
                            <content>
-                              <CharmListView id="lvDrinks" fx:id="lvOnDelivery" prefHeight="540.0" prefWidth="351.0" />
+                              <CharmListView id="lvOnDelivery" fx:id="lvOnDelivery" prefHeight="540.0" prefWidth="351.0" />
                            </content>
                         </ScrollPane>
                      </content>
                 </Tab>
-                  <Tab id="tabMispizzas" fx:id="tabDelivered" onSelectionChanged="#loadDelivered" text="%dampizza.views.manager.tab.delivered">
+                  <Tab id="tabDelivered" fx:id="tabDelivered" onSelectionChanged="#loadDelivered" text="%dampizza.views.manager.tab.delivered">
                      <content>
                         <ScrollPane hbarPolicy="NEVER">
                            <content>
-                              <CharmListView id="lvCustom" fx:id="lvDelivered" prefHeight="531.0" prefWidth="342.0" />
+                              <CharmListView id="lvDelivered" fx:id="lvDelivered" prefHeight="531.0" prefWidth="342.0" />
                            </content>
                         </ScrollPane>
                      </content>
@@ -58,6 +58,7 @@
                <children>
                   <Button fx:id="btnAdd" disable="true" mnemonicParsing="false" onAction="#btnAddAction" text="%dampizza.views.manager.button.ondelivery" />
                   <Button fx:id="btnCancel" disable="true" mnemonicParsing="false" onAction="#btnCancelAction" text="%dampizza.views.manager.button.cancel" />
+                  <Button fx:id="btnDelivered" disable="true" mnemonicParsing="false" onAction="#btnDeliveredAction" text="%dampizza.views.manager.button.delivered" visible="false" />
                </children>
             </HBox>
          </children>

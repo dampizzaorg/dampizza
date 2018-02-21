@@ -26,6 +26,7 @@ import static com.dampizza.App.MANAGER_DEALER_VIEW;
 import static com.dampizza.App.PIZZA_CREATE_VIEW;
 import static com.dampizza.App.PIZZA_DELETE_VIEW;
 import com.dampizza.cfg.AppConstants;
+import com.dampizza.util.LogicFactory;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
@@ -37,15 +38,17 @@ import javafx.scene.image.Image;
 public class DrawerManager {
 
     private final NavigationDrawer drawer;
-    private static Integer usu = 1;
+    private static Integer userType = 1;
 
     public DrawerManager(Integer status) {
         this.drawer = new NavigationDrawer();
-        usu = status;
+        userType = status;
     }
 
     public DrawerManager() {
         this.drawer = new NavigationDrawer();
+        
+        userType = (Integer)LogicFactory.getUserManager().getSession().get("type");
 
         NavigationDrawer.Header header = new NavigationDrawer.Header("DamPizza",
                 "Mobile App",
@@ -54,7 +57,7 @@ public class DrawerManager {
 
         /* CREATE NEW DRAWER ITEMS HERE*/
         /* CAMBIAR MENU DEPENDIENDO DEL USUARIO*/
-        if (usu == AppConstants.USER_CUSTOMER) {
+        if (userType == AppConstants.USER_CUSTOMER) {
             final Item customerItem = new ViewItem("Customer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), CUSTOMER_VIEW);
             final Item orderItem = new ViewItem("Create Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), ORDER_CREATE_VIEW);
             final Item historyItem = new ViewItem("History Orders", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), HISTORY_VIEW);
@@ -65,7 +68,7 @@ public class DrawerManager {
 
             /* REMEMBER TO ADD ITEMS TO THE DRAWER */
             drawer.getItems().addAll(customerItem, orderItem, ownPizzaCreate, historyItem, profileItem, cartItem, logoutItem);
-        } else if (usu == AppConstants.USER_MANAGER) {
+        } else if (userType == AppConstants.USER_MANAGER) {
             final Item managerItem = new ViewItem("Manager", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
             final Item managerOrderItem = new ViewItem("Manager Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_ORDER_VIEW);
             final Item registerItem = new ViewItem("Register a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), SIGNUP_VIEW);
@@ -77,10 +80,11 @@ public class DrawerManager {
             
             drawer.getItems().addAll(managerItem, managerOrderItem,pizzaCreateItem ,pizzaDeleteItem,registerItem, profileItem,managerDealerItem,logoutItem);
 
-        } else if (usu == AppConstants.USER_DEALER){
+        } else if (userType == AppConstants.USER_DEALER){
             final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
             final Item dealerItem = new ViewItem("Dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), DEALER_VIEW);
             final Item logoutItem = new ViewItem("Logout", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
+            
             drawer.getItems().addAll(dealerItem, profileItem,logoutItem);
         }
 
