@@ -13,7 +13,7 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.OrderManagerImp;
 import com.dampizza.views.login.orderList;
-import com.dampizza.views.custom.productList;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.AppBar;
@@ -25,6 +25,7 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import static com.dampizza.App.MANAGER_ORDER_VIEW;
 import static com.dampizza.App.HISTORY_VIEW;
 import static com.dampizza.App.CUSTOMER_VIEW;
+import com.dampizza.util.LogicFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -82,7 +83,7 @@ public class HistoryPresenterDetail implements Initializable {
        omi = new OrderManagerImp();
         oblOrders = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
        lvOrders.setItems(oblOrders);
-       lvOrders.setCellFactory(p -> new productList());
+       lvOrders.setCellFactory(p -> new ProductCLV());
       
     }     
     public void back(){

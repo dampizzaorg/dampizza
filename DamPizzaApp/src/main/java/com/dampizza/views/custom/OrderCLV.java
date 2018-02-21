@@ -7,7 +7,7 @@ package com.dampizza.views.custom;
 
 import com.gluonhq.charm.glisten.control.CharmListCell;
 import com.gluonhq.charm.glisten.control.ListTile;
-import com.dampizza.logic.dto.UserDTO;
+import com.dampizza.logic.dto.OrderDTO;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,12 +15,12 @@ import javafx.scene.image.ImageView;
  *
  * @author Jon Xabier Gimenez
  */
-public class userList extends CharmListCell<UserDTO>{
+public class OrderCLV extends CharmListCell<OrderDTO>{
     
     private final ListTile tile;
     private final ImageView imageView;
 
-    public userList() {
+    public OrderCLV() {
         this.tile = new ListTile();
         imageView = new ImageView();
         tile.setPrimaryGraphic(imageView);
@@ -28,11 +28,14 @@ public class userList extends CharmListCell<UserDTO>{
     }
 
     @Override
-    public void updateItem(UserDTO item, boolean empty) {
+    public void updateItem(OrderDTO item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
-            
-            tile.textProperty().setAll(item.getUsername()+"  "+item.getName(),item.getAddress()+"    "+item.getEmail());
+            final Image image = new Image("/img/order.png", 50, 50, false, false);
+            if (image != null) {
+                imageView.setImage(image);
+            }
+            tile.textProperty().setAll(item.getId()+"  "+item.getDate(),item.getAddress());
             setGraphic(tile);
         } else {
             setGraphic(null);

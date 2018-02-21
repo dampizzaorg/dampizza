@@ -26,7 +26,7 @@ import com.dampizza.cfg.AppConstants;
 
 import com.dampizza.exception.order.OrderQueryException;
 import com.dampizza.logic.dto.OrderDTO;
-import com.dampizza.views.custom.orderList;
+import com.dampizza.views.custom.OrderCLV;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.NavigationDrawer;
 
@@ -91,7 +91,7 @@ public class DealerPresenter implements Initializable {
             //Asigno la lista al ChamList
             lbOrders.setItems(oblOrders);
             //Le doy formato 
-            lbOrders.setCellFactory(p -> new orderList());
+            lbOrders.setCellFactory(p -> new OrderCLV());
             logger.info("List loaded");
             lbOrders.selectedItemProperty().addListener((obs,ov,nv) ->{
             //Carga la orden en una constante

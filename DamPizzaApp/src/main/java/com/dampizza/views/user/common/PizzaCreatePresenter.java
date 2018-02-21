@@ -6,7 +6,6 @@ import com.dampizza.exception.product.ProductCreateException;
 import com.dampizza.exception.product.ProductQueryException;
 import com.dampizza.logic.dto.IngredientDTO;
 import com.dampizza.logic.dto.ProductDTO;
-import com.dampizza.logic.io.IngredientManagerInterface;
 import com.dampizza.util.LogicFactory;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.Alert;

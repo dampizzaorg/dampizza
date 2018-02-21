@@ -11,7 +11,7 @@ import com.dampizza.exception.product.ProductDeleteException;
 import com.dampizza.exception.product.ProductQueryException;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.util.LogicFactory;
-import com.dampizza.views.custom.productList;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.Alert;
 import com.gluonhq.charm.glisten.control.AppBar;
@@ -101,7 +101,7 @@ public class PizzaDeletePresenter {
 
     private void chargeList() {
         clvPizzas.setItems(pizzas);
-        clvPizzas.setCellFactory(p -> new productList());
+        clvPizzas.setCellFactory(p -> new ProductCLV());
     }
 
 }

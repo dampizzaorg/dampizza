@@ -51,6 +51,16 @@ public interface UserManagerInterface {
     public Integer updateUser(UserDTO user) throws UserUpdateException;
     
     /**
+     * Set Active status
+     * @param id user id
+     * @param value true or false
+     * @return
+     * @throws UserUpdateException
+     * @throws UserQueryException 
+     */
+    public Integer setActive(Long id, Boolean value) throws UserUpdateException, UserQueryException;
+    
+    /**
      * Delete user
      * @param id user id.
      * @return Success: 1, Doesn't Exists:2, Error:0
@@ -151,6 +161,7 @@ public interface UserManagerInterface {
      * Reset shopping cart
      */
     public void resetCart() throws UserQueryException;
+    
     
 
 }

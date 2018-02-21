@@ -5,22 +5,23 @@
  */
 package com.dampizza.views.custom;
 
+import com.dampizza.logic.dto.ProductDTO;
 import com.gluonhq.charm.glisten.control.CharmListCell;
 import com.gluonhq.charm.glisten.control.ListTile;
-import com.dampizza.logic.dto.OrderDTO;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
+
+
 import javafx.scene.image.ImageView;
 /**
  *
  * @author Jon Xabier Gimenez
  */
-public class orderList extends CharmListCell<OrderDTO>{
+public class ProductCLV extends CharmListCell<ProductDTO>{
     
     private final ListTile tile;
-    private final ImageView imageView;
+      private final ImageView imageView;
 
-    public orderList() {
+    public ProductCLV() {
         this.tile = new ListTile();
         imageView = new ImageView();
         tile.setPrimaryGraphic(imageView);
@@ -28,11 +29,14 @@ public class orderList extends CharmListCell<OrderDTO>{
     }
 
     @Override
-    public void updateItem(OrderDTO item, boolean empty) {
+    public void updateItem(ProductDTO item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
-            
-            tile.textProperty().setAll(item.getId()+"  "+item.getDate(),item.getAddress());
+            final Image image = new Image(item.getUrl(),50,50,false,false);
+            if (image != null) {
+               imageView.setImage(image);  
+            }
+            tile.textProperty().setAll(item.getName()+"    "+item.getPrice(),item.getDescription());
             setGraphic(tile);
         } else {
             setGraphic(null);

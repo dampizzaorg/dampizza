@@ -42,7 +42,7 @@ public class UserDTO {
     }
     
     public UserDTO(Long id,String username, String name, String surnames, String email, String address) {
-        this.id = new SimpleLongProperty();
+        this.id = new SimpleLongProperty(id);
         this.username = new SimpleStringProperty(username);
         this.name = new SimpleStringProperty(name);
         this.surnames = new SimpleStringProperty(surnames);
@@ -122,11 +122,16 @@ public class UserDTO {
     
     
 
+//    @Override
+//    public String toString() {
+//        return "username: " + this.getUsername() + ", name: " + this.getName()
+//                + ", surnames: " + this.getSurnames() + ", email: " + this.getEmail()
+//                + ", address: " + this.getAddress();
+//    }
+    
     @Override
     public String toString() {
-        return "username: " + this.getUsername() + ", name: " + this.getName()
-                + ", surnames: " + this.getSurnames() + ", email: " + this.getEmail()
-                + ", address: " + this.getAddress();
+        return this.getId()+", "+this.getName()+", "+this.getSurnames();
     }
 
     /**
@@ -142,5 +147,7 @@ public class UserDTO {
     public void setId(Long id) {
         this.id.set(id);
     }
+    
+    
 
 }
