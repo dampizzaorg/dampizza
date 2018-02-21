@@ -1,6 +1,9 @@
 package com.dampizza.views.user.common;
 
 import com.dampizza.App;
+import static com.dampizza.App.MANAGER_VIEW;
+import static com.dampizza.App.ORDER_CREATE_VIEW;
+import com.dampizza.cfg.AppConstants;
 import com.dampizza.exception.ingredient.IngredientQueryException;
 import com.dampizza.exception.product.ProductCreateException;
 import com.dampizza.exception.product.ProductQueryException;
@@ -10,6 +13,7 @@ import com.dampizza.util.LogicFactory;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.Alert;
 import com.gluonhq.charm.glisten.control.AppBar;
+import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.TextField;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
@@ -110,14 +114,17 @@ public class PizzaCreatePresenter implements Initializable {
     @FXML
     private void addIngredient() {
         //if selected is not null
+            MobileApplication.getInstance().showMessage("ESKEKIT");
         if (cbIngredients.getSelectionModel().getSelectedIndex() != -1) {
             Integer selectedIndex = cbIngredients.getSelectionModel().getSelectedIndex();
             IngredientDTO selectedIngredient = availeableIngredients.get(selectedIndex);
             //Check if the ingredient is already on the pizza ingredient list
             Boolean isSelected = ingredientIsSelected(selectedIngredient);
+            cbIngredients.getSelectionModel().select(null);
             if (isSelected) {
                 //if is selected notify user
-                alert = new Alert(AlertType.INFORMATION, "The ingredient that you attempt to insert is alredy selected on the ingredient list");
+                alert= new Alert(AlertType.INFORMATION, App.getBundle().getString("dammpizza.views.user.common.createPizzaIngredientIsSelected"));
+                //alert = new Alert(AlertType.INFORMATION, "The ingredient that you attempt to insert is alredy selected on the ingredient list");
                 alert.showAndWait();
             } else {
                 //if is not selected add the ingredient to the list and write the name on the ingredients text area 
@@ -126,7 +133,7 @@ public class PizzaCreatePresenter implements Initializable {
             }
             //if selected is  null            
         } else {
-            alert = new Alert(AlertType.WARNING, "Select one item first");
+            alert = new Alert(AlertType.WARNING, App.getBundle().getString("dammpizza.views.user.common.createPizzaIngredientSelectOneFirst"));
             alert.showAndWait();
         }
     }
@@ -149,7 +156,8 @@ public class PizzaCreatePresenter implements Initializable {
         return isSelected;
     }
 
-    /**
+
+     /**
      * Method to add one pizza into the DB
      */
     @FXML
@@ -162,16 +170,24 @@ public class PizzaCreatePresenter implements Initializable {
                 pizza.setDescription("");
                 pizza.setIngredients(pizzaIngredients);
                 pizza.setCategory(1);
+                //if the user is a customer set userID 
+                if(!LogicFactory.getUserManager().getSession().get("type").equals(AppConstants.USER_MANAGER)){
+                    pizza.setUserId((Long) LogicFactory.getUserManager().getSession().get("id"));
+                }
                 System.out.println(pizza.getName());
                 LogicFactory.getProductManager().createProduct(pizza);
                 cleanData();
+                /*Toast t = new Toast(App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreatedMessage"),LENGTH_LONG);
+                t.show();*/
+                MobileApplication.getInstance().showMessage(MANAGER_VIEW);
+                returnToPrev();
             } catch (ProductCreateException ex) {
                 Logger.getLogger(PizzaCreatePresenter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ProductQueryException ex) {
                 Logger.getLogger(PizzaCreatePresenter.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            Alert a = new Alert(AlertType.WARNING, "set a name of the pizza first");
+            Alert a = new Alert(AlertType.WARNING, App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreateError"));
             a.showAndWait();
         }
 
@@ -190,7 +206,7 @@ public class PizzaCreatePresenter implements Initializable {
             Boolean isSelected = ingredientIsSelected(selectedIngredient);
             if (isSelected) {
                 //if is selected notify user and delete if he want to delete
-                alert = new Alert(AlertType.CONFIRMATION, "¿Are you sure that you want to delete this ingredient?");
+                alert = new Alert(AlertType.CONFIRMATION,App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreateDeleteIngredientConfirmation"));
                 Optional<ButtonType> result = alert.showAndWait();
                 //if he accept, delete the ingredient
                 if (result.get() == ButtonType.OK) {
@@ -199,12 +215,12 @@ public class PizzaCreatePresenter implements Initializable {
                 }
             } else {
                 //if is not selected notify user
-                alert = new Alert(AlertType.WARNING, "You cant delete an ingredient if it is not on the ingredient list");
+                alert = new Alert(AlertType.WARNING,App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreateDeleteIngredientDeleteNoExist"));
                 alert.showAndWait();
             }
             //if selected is  null            
         } else {
-            alert = new Alert(AlertType.WARNING, "Select one item first");
+            alert = new Alert(AlertType.WARNING,App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreateDeleteIngredientDeleteError"));
             alert.showAndWait();
         }
     }
@@ -214,7 +230,7 @@ public class PizzaCreatePresenter implements Initializable {
      */
     private void chargeData() {
         try {
-            //tfPizzaName.setPromptText("Pizza Name");
+            tfPizzaName.setPromptText(App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreateNameHint"));
             //Created pizza
             pizza = new ProductDTO();
             //ingredients of the created pizza
@@ -259,7 +275,6 @@ public class PizzaCreatePresenter implements Initializable {
             }
         }
         return price;
-
     }
     /**
      * Method to clean all the data, after make the pizza
@@ -268,5 +283,17 @@ public class PizzaCreatePresenter implements Initializable {
         tfPizzaName.setText("");
         taIngredients.setText("");
         pizzaIngredients.clear();
+        cbIngredients.getSelectionModel().select(null);
+    }
+    /**
+     * Metghod to go to the previous window
+     */
+    private void returnToPrev() {
+        NavigationDrawer.ViewItem view=null;
+        if(LogicFactory.getUserManager().getSession().get("type").equals(AppConstants.USER_MANAGER)){
+            view = new NavigationDrawer.ViewItem("Create Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), ORDER_CREATE_VIEW);
+        }else if(LogicFactory.getUserManager().getSession().get("type").equals(AppConstants.USER_CUSTOMER)){
+            view = new NavigationDrawer.ViewItem("Manager", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
+        }
     }
 }

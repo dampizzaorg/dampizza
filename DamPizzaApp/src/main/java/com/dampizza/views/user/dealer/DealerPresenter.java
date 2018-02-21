@@ -86,7 +86,7 @@ public class DealerPresenter implements Initializable {
     private void initClassic() {
         try {
             //Recogo todas las ordenes del Dealer y las filtro con las que estan en proceso
-            oblOrders = FXCollections.observableArrayList(LogicFactory.getOrderManager().getAllOrdersByDealer().stream().filter(g -> g.getStatus()==AppConstants.STATUS_ONDELIVER).collect(Collectors.toList()));
+            oblOrders = FXCollections.observableArrayList(LogicFactory.getOrderManager().getAllOrdersByDealer());
             //oblOrders = FXCollections.observableArrayList(LogicFactory.getOrderManager().getAllOrders().stream().filter(g -> g.getStatus()==AppConstants.STATUS_ONDELIVER).collect(Collectors.toList()));
             //Asigno la lista al ChamList
             lbOrders.setItems(oblOrders);

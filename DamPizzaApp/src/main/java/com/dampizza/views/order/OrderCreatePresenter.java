@@ -14,6 +14,7 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.ProductManagerImp;
 import com.dampizza.util.LogicFactory;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.control.Alert;
 import com.gluonhq.charm.glisten.control.CharmListView;
 import com.gluonhq.charm.glisten.control.Toast;
@@ -111,7 +112,7 @@ public class OrderCreatePresenter {
         } catch (ProductQueryException ex) {
             Logger.getLogger(HistoryPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        lvDrinks.setCellFactory(p -> new PizzaCLV());
+        lvDrinks.setCellFactory(p -> new ProductCLV());
         lvDrinks.setItems(oblDrinks);
     }
 
