@@ -78,10 +78,11 @@ public class ManagerPresenter {
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
                 appBar.setTitleText("Create order");
-
-                loadPrep();
+                
                 addListeners();
-                //tabPane.getSelectionModel().select(0);
+                loadPrep();
+                
+                tabPane.getSelectionModel().select(0);
 
             }
         });

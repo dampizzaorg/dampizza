@@ -131,10 +131,11 @@ public class UserDTO {
     
     @Override
     public String toString() {
-        String firsSurname= this.getSurnames().substring(0, this.getSurnames().indexOf("%"));
-        String secondSurname= this.getSurnames().substring(this.getSurnames().indexOf("%")+1);
+//        String firsSurname= this.getSurnames().substring(0, this.getSurnames().indexOf("%")-1);
+//        String secondSurname= this.getSurnames().substring(this.getSurnames().indexOf("%")+1);
         
-        return this.getId()+", "+this.getName()+", "+firsSurname+" "+secondSurname;
+        //return this.getId()+", "+this.getName()+", "+firsSurname+" "+secondSurname;
+        return this.getId()+", "+this.getName();
     }
 
     /**
