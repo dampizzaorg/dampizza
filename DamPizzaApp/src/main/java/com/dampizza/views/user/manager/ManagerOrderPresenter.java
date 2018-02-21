@@ -5,7 +5,7 @@
  */
 package com.dampizza.views.user.manager;
 
-import com.dampizza.views.custom.DrinkCLV;
+import com.dampizza.views.custom.ProductCLV;
 import com.dampizza.App;
 import static com.dampizza.App.MANAGER_VIEW;
 import static com.dampizza.App.MANAGER_DEALER_VIEW;
@@ -85,7 +85,7 @@ public class ManagerOrderPresenter {
 
                 if (order != null) {
                     try {
-                        lvProducts.setCellFactory(p -> new DrinkCLV());
+                        lvProducts.setCellFactory(p -> new ProductCLV());
                         taOrder.setEditable(false);
                         taOrder.setText(order.getId() + "\n" + order.getDate() + "\n" + order.getAddress());
                         orderProducts = FXCollections.observableArrayList(order.getProducts());

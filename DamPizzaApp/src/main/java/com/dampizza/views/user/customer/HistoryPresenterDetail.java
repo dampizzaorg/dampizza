@@ -13,7 +13,7 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.OrderManagerImp;
 import com.dampizza.views.login.orderList;
-import com.dampizza.views.custom.DrinkCLV;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.AppBar;
@@ -77,13 +77,14 @@ public class HistoryPresenterDetail implements Initializable {
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");
                 
             }
+                omi = LogicFactory.getOrderManager();
+            oblOrders = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
+           lvOrders.setItems(oblOrders);
+           lvOrders.setCellFactory(p -> new ProductCLV());
             
         });
        
-       omi = new OrderManagerImp();
-        oblOrders = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
-       lvOrders.setItems(oblOrders);
-       lvOrders.setCellFactory(p -> new DrinkCLV());
+       
       
     }     
     public void back(){
