@@ -111,7 +111,7 @@ public class OrderCreatePresenter {
         } catch (ProductQueryException ex) {
             Logger.getLogger(HistoryPresenter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        lvDrinks.setCellFactory(p -> new PizzaCLV());
+        lvDrinks.setCellFactory(p -> new ProductCLV());
         lvDrinks.setItems(oblDrinks);
     }
 
