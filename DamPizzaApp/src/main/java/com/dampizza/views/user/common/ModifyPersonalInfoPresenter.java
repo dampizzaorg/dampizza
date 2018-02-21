@@ -142,7 +142,7 @@ public class ModifyPersonalInfoPresenter implements Initializable {
                     userManager.updateUser(user);
                     logger.info(tfUserName.getText() + " user updated");
                     //load password pattern
-                     String pattern = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+                    String pattern = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!*.,+-;&]).{8,40})";
                     //Checks that the fields are not empty, have same value and matches with pattern,
                     if((!(tfPassword.getText().equals("")||tfRepeatPassword.getText().equals(""))) &&
                             tfPassword.getText().equals(tfRepeatPassword.getText()) &&
