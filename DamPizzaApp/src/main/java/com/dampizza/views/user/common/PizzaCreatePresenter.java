@@ -117,11 +117,13 @@ public class PizzaCreatePresenter implements Initializable {
     @FXML
     private void addIngredient() {
         //if selected is not null
+            MobileApplication.getInstance().showMessage("ESKEKIT");
         if (cbIngredients.getSelectionModel().getSelectedIndex() != -1) {
             Integer selectedIndex = cbIngredients.getSelectionModel().getSelectedIndex();
             IngredientDTO selectedIngredient = availeableIngredients.get(selectedIndex);
             //Check if the ingredient is already on the pizza ingredient list
             Boolean isSelected = ingredientIsSelected(selectedIngredient);
+            cbIngredients.getSelectionModel().select(null);
             if (isSelected) {
                 //if is selected notify user
                 alert= new Alert(AlertType.INFORMATION, App.getBundle().getString("dammpizza.views.user.common.createPizzaIngredientIsSelected"));
@@ -156,8 +158,9 @@ public class PizzaCreatePresenter implements Initializable {
         }
         return isSelected;
     }
-    
-    /**
+
+
+     /**
      * Method to add one pizza into the DB
      */
     @FXML
@@ -275,7 +278,6 @@ public class PizzaCreatePresenter implements Initializable {
             }
         }
         return price;
-
     }
     /**
      * Method to clean all the data, after make the pizza
@@ -284,6 +286,7 @@ public class PizzaCreatePresenter implements Initializable {
         tfPizzaName.setText("");
         taIngredients.setText("");
         pizzaIngredients.clear();
+        cbIngredients.getSelectionModel().select(null);
     }
     /**
      * Metghod to go to the previous window

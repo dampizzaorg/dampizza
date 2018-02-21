@@ -218,7 +218,7 @@ public class SignupPresenter {
     }
 
     private boolean validPassword(String password) {
-        String pattern = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+        String pattern = "((?=.*[a-z])(?=.*\\d)(?=.*[A-Z])(?=.*[@#$%!*.,+-;&]).{8,40})";
         if (password.matches(pattern)) {
             return true;
         } else {
