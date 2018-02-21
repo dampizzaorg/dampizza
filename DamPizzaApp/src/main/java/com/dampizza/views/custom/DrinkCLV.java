@@ -16,12 +16,12 @@ import javafx.scene.image.ImageView;
  *
  * @author Jon Xabier Gimenez
  */
-public class ProductCLV extends CharmListCell<ProductDTO>{
+public class DrinkCLV extends CharmListCell<ProductDTO>{
     
     private final ListTile tile;
       private final ImageView imageView;
 
-    public ProductCLV() {
+    public DrinkCLV() {
         this.tile = new ListTile();
         imageView = new ImageView();
         tile.setPrimaryGraphic(imageView);
@@ -32,7 +32,8 @@ public class ProductCLV extends CharmListCell<ProductDTO>{
     public void updateItem(ProductDTO item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
-            final Image image = new Image(item.getUrl(),50,50,false,false);
+//            final Image image = new Image(item.getUrl(),50,50,false,false);
+            final Image image = new Image("/img/cola.png",50,50,false,false);
             if (image != null) {
                imageView.setImage(image);  
             }

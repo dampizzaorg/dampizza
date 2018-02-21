@@ -16,7 +16,7 @@ import com.dampizza.exception.order.OrderUpdateException;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.OrderManagerImp;
 import com.dampizza.util.LogicFactory;
-import com.dampizza.views.custom.ProductCLV;
+import com.dampizza.views.custom.DrinkCLV;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.AppBar;
@@ -73,7 +73,7 @@ public class DealerOrderPresenter {
                 logger.info("textArea loaded");
                 oblItems = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
                 lvOrder.setItems(oblItems);
-                lvOrder.setCellFactory(p -> new ProductCLV());  
+                lvOrder.setCellFactory(p -> new DrinkCLV());  
                 logger.info("Producs loaded");
             }
         });
