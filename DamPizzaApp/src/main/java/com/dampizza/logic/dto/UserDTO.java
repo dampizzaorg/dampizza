@@ -42,7 +42,7 @@ public class UserDTO {
     }
     
     public UserDTO(Long id,String username, String name, String surnames, String email, String address) {
-        this.id = new SimpleLongProperty(id);
+        this.id = id != null ? new SimpleLongProperty(id) : new SimpleLongProperty();
         this.username = new SimpleStringProperty(username);
         this.name = new SimpleStringProperty(name);
         this.surnames = new SimpleStringProperty(surnames);

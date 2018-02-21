@@ -163,13 +163,10 @@ public class OrderManagerImp implements OrderManagerInterface {
         logger.info("Getting list of all orders.");
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<OrderDTO> orderList = new ArrayList();
-        String hql = "from OrderEntity where customer.id =:id order by date";
+        String hql = "from OrderEntity where customer.id =:id";
 
         try {
-//            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id in(select id from UserEntity where credential.username = "+user+")").list();
-          
-//              List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
-            
+
             Query query = session.createQuery(hql);
             query.setParameter("id", umi.getSession().get("id"));
             List<OrderEntity> orderEntities = query.list();

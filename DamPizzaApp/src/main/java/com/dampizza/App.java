@@ -89,10 +89,10 @@ public class App extends MobileApplication {
         //App.getBundle().getString("dampizza.views.login.btnlogin")
         logger.info("Init App");
         /* ADD VIEWS TO VIEW FACTORY */
-        addViewFactory(MANAGER_ORDER_VIEW, () -> {
-            ManagerOrderView managerOrderView = new ManagerOrderView(MANAGER_ORDER_VIEW);
-            return (View) managerOrderView.getView();
-        });
+//        addViewFactory(MANAGER_ORDER_VIEW, () -> {
+//            ManagerOrderView managerOrderView = new ManagerOrderView(MANAGER_ORDER_VIEW);
+//            return (View) managerOrderView.getView();
+//        });
 
         addViewFactory(LOGIN_VIEW, () -> new LoginView(LOGIN_VIEW).getView());
         addViewFactory(SIGNUP_VIEW, () -> new SignupView(SIGNUP_VIEW).getView());
@@ -100,7 +100,7 @@ public class App extends MobileApplication {
         addViewFactory(PROFILE_VIEW, () -> new ModifyPersonalInfoView(PROFILE_VIEW).getView());
         addViewFactory(CUSTOMER_VIEW, () -> new CustomerView(CUSTOMER_VIEW).getView());
         addViewFactory(MANAGER_VIEW, () -> new ManagerView(MANAGER_VIEW).getView());
-        //addViewFactory(MANAGER_ORDER_VIEW, () -> new ManagerOrderView(MANAGER_ORDER_VIEW).getView());
+        addViewFactory(MANAGER_ORDER_VIEW, () -> new ManagerOrderView(MANAGER_ORDER_VIEW).getView());
         addViewFactory(MANAGER_DEALER_VIEW, () -> new ManagerDealerView(MANAGER_DEALER_VIEW).getView());
         addViewFactory(MANAGER_ADD_DEALER_VIEW, () -> new RegisterDealerView(MANAGER_ADD_DEALER_VIEW).getView());
         addViewFactory(DEALER_VIEW, () -> new DealerView(DEALER_VIEW).getView());

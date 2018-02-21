@@ -36,7 +36,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//import javafx.scene.image.ImageViewBuilder;
 
 /**
  *
@@ -84,13 +83,11 @@ public class PizzaCreatePresenter implements Initializable {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Make pizza");
+                appBar.setTitleText("Crear pizza");
                 //Charege the window with some values
                 chargeData();
             }
-
         });
-
     }
 
     /**
