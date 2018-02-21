@@ -21,6 +21,11 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
+
+/*
+ * Class that allows to get Email credentials in a string
+ * @author Jon Xabier Gimenez
+ */
 public class getEmailEntity {
 
 	public static void main(String[] args) {
