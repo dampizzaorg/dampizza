@@ -202,7 +202,7 @@ public class OrderManagerImp implements OrderManagerInterface {
         logger.info("Getting list of all orders by associated dealer.");
         Session session = HibernateUtil.getSessionFactory().openSession();
         List<OrderDTO> orderList = new ArrayList();
-        String hql = "from OrderEntity where dealer.id =:id order by date";
+        String hql = "from OrderEntity where dealer.id =:id and status = 2 order by date";
 
         try {
             Query query = session.createQuery(hql);
