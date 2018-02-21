@@ -75,8 +75,6 @@ public class RegisterDealerPresenter {
     private Label lbDirection;
     @FXML
     private Label lbEmail;
-   
-    
 
     // </editor-fold>
     private UserManagerInterface userManager;
@@ -98,29 +96,29 @@ public class RegisterDealerPresenter {
 
             }
         });
-        
+
     }
 
     @FXML
     public void handlerActionSignUp() throws IOException {
         if (formValid()) {
             //pair the surnames on one string
-            
+
             try {
                 //Unify the two surnames and we put % symbol to split them when program present this user
                 String surname = tfFirstSurName.getText() + "%" + tfSecondSurName.getText();
                 //encrypt the password
 
-                String pw=PasswordGenerator.random();
+                String pw = PasswordGenerator.random();
 
                 //Create and upload the user into the DB with the specified data
                 UserDTO user = new UserDTO(tfUserName.getText(), tfName.getText(), surname, tfEmail.getText(), tfAddress.getText());
                 //upload the user
-                LogicFactory.getUserManager().createUser(user, pw,AppConstants.USER_DEALER);
+                LogicFactory.getUserManager().createUser(user, pw, AppConstants.USER_DEALER);
                 //SEND A EMAIL AFTER REGISTRATION FALTA MANDARLE SU USUARIO Y CONTRASEÑA
                 String message = "You has request  recover passwod, unfortunaly we "
-                                + "cant send you your password.\nThis is yor new password: " + pw + "\n dont forget changing the password before get logged";
-                 MailUtil.sendEmail(tfEmail.getText(), "Deliver Man Sign up", message);
+                        + "cant send you your password.\nThis is yor new password: " + pw + "\n dont forget changing the password before get logged";
+                MailUtil.sendEmail(tfEmail.getText(), "Deliver Man Sign up", message);
 
             } catch (UserCreateException ex) {
                 Logger.getLogger(RegisterDealerPresenter.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,31 +151,32 @@ public class RegisterDealerPresenter {
         try {
             //CHECK USER NAME ONLY IF ALL THE VALUES ARE NOT NULL
             if (valid) {
-
-                valid = userManager.userExists(userName) == 1;
+                if (LogicFactory.getUserManager().userExists(userName) == 1) {
+                    valid = false;
+                }
                 //IF USER EXIST
-                if (valid) {
+                if (!valid) {
                     Alert alert = new Alert(AlertType.WARNING, "User name in use");
                     alert.showAndWait();
                     //set user name field void
                     tfUserName.setText("");
                     checkViodFields();
-                    valid = false;
                     //IF USER DOES NOT EXIST
                 } else {
                     //CHECK EMAIL
                     EmailValidator e = new EmailValidator();
                     if (!e.validate(email)) {
-                        //EMAIL ID NOT VALID
+                        //EMAIL IS NOT VALID
                         Alert alert = new Alert(AlertType.WARNING, "wrong email. This is a valid email example: example.email@example.com");
                         alert.showAndWait();
                         //set email void
                         tfEmail.setText("");
                         checkViodFields();
                         valid = false;
+                    } else {
+                        Alert alert = new Alert(AlertType.INFORMATION, "Dealer correctly correctly registered");
+                        alert.showAndWait();
                     }
-                        
-                    
                 }
             }
         } catch (UserQueryException ex) {
@@ -192,7 +191,7 @@ public class RegisterDealerPresenter {
         DrawerManager drawer = new DrawerManager();
         drawer.updateView(loginItem);
     }
-    
+
     private void checkViodFields() {
         String userName = tfUserName.getText();
         String name = tfName.getText();
@@ -200,7 +199,7 @@ public class RegisterDealerPresenter {
         String surname2 = tfSecondSurName.getText();
         String address = tfAddress.getText();
         String email = tfEmail.getText();
-       
+
         //Check if the fields are void or not, if are void, the labels will change to red color and black
         //if they are not void
         if (userName.trim().equals("")) {
