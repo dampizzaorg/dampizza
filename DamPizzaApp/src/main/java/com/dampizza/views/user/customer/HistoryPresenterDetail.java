@@ -77,13 +77,14 @@ public class HistoryPresenterDetail implements Initializable {
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");
                 
             }
+                omi = LogicFactory.getOrderManager();
+            oblOrders = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
+           lvOrders.setItems(oblOrders);
+           lvOrders.setCellFactory(p -> new ProductCLV());
             
         });
        
-       omi = new OrderManagerImp();
-        oblOrders = FXCollections.observableArrayList(App.getCurrentOrder().getProducts());
-       lvOrders.setItems(oblOrders);
-       lvOrders.setCellFactory(p -> new ProductCLV());
+       
       
     }     
     public void back(){

@@ -19,6 +19,7 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.ProductManagerImp;
 import com.dampizza.util.LogicFactory;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.CharmListCell;
 import com.gluonhq.charm.glisten.control.CharmListView;
@@ -69,7 +70,7 @@ public class CartPresenter {
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
                 appBar.setTitleText("Create order");
 
-                lvCart.setCellFactory(p -> new PizzaCLV());
+                lvCart.setCellFactory(p -> new ProductCLV());
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");
 
                 initCartView();

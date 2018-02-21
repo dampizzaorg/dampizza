@@ -30,8 +30,10 @@ public class MailUtil {
             //set the host and the port
             email.setHostName("smtp.googlemail.com");
             email.setSmtpPort(465);
-            //create the autentificator
-            DefaultAuthenticator da = new DefaultAuthenticator("dampizza123@gmail.com", "1234567890p");
+            //Taking credentials for sending the email
+             String[] credential = getEmailEntity.start().split("/");
+            //create the autentificator 
+            DefaultAuthenticator da = new DefaultAuthenticator(credential[0], credential[1]);
             //set the autetificator
             email.setAuthenticator(da);
             email.setSSLOnConnect(true);
