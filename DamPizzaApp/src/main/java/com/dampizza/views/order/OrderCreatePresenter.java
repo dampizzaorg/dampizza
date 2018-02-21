@@ -14,6 +14,7 @@ import com.dampizza.logic.dto.OrderDTO;
 import com.dampizza.logic.dto.ProductDTO;
 import com.dampizza.logic.imp.ProductManagerImp;
 import com.dampizza.util.LogicFactory;
+import com.dampizza.views.custom.ProductCLV;
 import com.gluonhq.charm.glisten.control.Alert;
 import com.gluonhq.charm.glisten.control.CharmListView;
 import com.gluonhq.charm.glisten.control.Toast;
