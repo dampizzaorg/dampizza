@@ -137,11 +137,12 @@ public class ManagerOrderPresenter {
         this.order = order;
     }
 
-    private ArrayList<String> getNames(ObservableList<UserDTO> dealerList) {
+     private ArrayList<String> getNames(ObservableList<UserDTO> dealerList) {
         ArrayList<String> names = new ArrayList<>();
         //for each UserDTO object take the name and surnames on a string and add to the name list
         dealerList.forEach((dealer) -> {
-            names.add(dealer.getName() + " " + dealer.getSurnames());
+            String surnames[]=dealer.getSurnames().split("%");
+            names.add(dealer.getName() + " " +surnames[0] +" " + surnames[1]);
         });
         return names;
     }
