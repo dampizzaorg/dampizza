@@ -1,6 +1,7 @@
 package com.dampizza.views.user.common;
 
 import com.dampizza.App;
+import com.dampizza.cfg.AppConstants;
 import com.dampizza.exception.ingredient.IngredientQueryException;
 import com.dampizza.exception.product.ProductCreateException;
 import com.dampizza.exception.product.ProductQueryException;
@@ -113,11 +114,13 @@ public class PizzaCreatePresenter implements Initializable {
     @FXML
     private void addIngredient() {
         //if selected is not null
+            MobileApplication.getInstance().showMessage("ESKEKIT");
         if (cbIngredients.getSelectionModel().getSelectedIndex() != -1) {
             Integer selectedIndex = cbIngredients.getSelectionModel().getSelectedIndex();
             IngredientDTO selectedIngredient = availeableIngredients.get(selectedIndex);
             //Check if the ingredient is already on the pizza ingredient list
             Boolean isSelected = ingredientIsSelected(selectedIngredient);
+            cbIngredients.getSelectionModel().select(null);
             if (isSelected) {
                 //if is selected notify user
                 alert = new Alert(AlertType.INFORMATION, "The ingredient that you attempt to insert is alredy selected on the ingredient list");
@@ -152,7 +155,7 @@ public class PizzaCreatePresenter implements Initializable {
         return isSelected;
     }
 
-    /**
+     /**
      * Method to add one pizza into the DB
      */
     @FXML
@@ -165,6 +168,10 @@ public class PizzaCreatePresenter implements Initializable {
                 pizza.setDescription("");
                 pizza.setIngredients(pizzaIngredients);
                 pizza.setCategory(1);
+                //if the user is a customer set userID 
+                if(!LogicFactory.getUserManager().getSession().get("type").equals(AppConstants.USER_MANAGER)){
+                    pizza.setUserId((Long) LogicFactory.getUserManager().getSession().get("id"));
+                }
                 System.out.println(pizza.getName());
                 LogicFactory.getProductManager().createProduct(pizza);
                 cleanData();
@@ -262,7 +269,6 @@ public class PizzaCreatePresenter implements Initializable {
             }
         }
         return price;
-
     }
     /**
      * Method to clean all the data, after make the pizza
@@ -271,5 +277,6 @@ public class PizzaCreatePresenter implements Initializable {
         tfPizzaName.setText("");
         taIngredients.setText("");
         pizzaIngredients.clear();
+        cbIngredients.getSelectionModel().select(null);
     }
 }
