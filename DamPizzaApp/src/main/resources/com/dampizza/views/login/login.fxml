@@ -28,21 +28,21 @@
       </VBox>
    </top>
    <left>
-      <VBox prefHeight="385.0" prefWidth="138.0" spacing="35.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="152.0" prefWidth="139.0" spacing="35.0" BorderPane.alignment="CENTER">
          <padding>
-            <Insets left="50.0" top="40.0" />
+            <Insets left="20.0" top="40.0" />
          </padding>
          <children>
-            <Label fx:id="username" text="USERNAME" />
-            <Label prefHeight="17.0" prefWidth="74.0" text="PASSWORD" />
+            <Label fx:id="username" prefHeight="18.0" prefWidth="164.0" text="NOMBRE USUARIO" />
+            <Label prefHeight="18.0" prefWidth="97.0" text="CONTRASEÑA" />
          </children>
       </VBox>
    </left>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="tfUsername" />
-            <PasswordField fx:id="tfPassword" />
+            <TextField fx:id="tfUsername" prefHeight="26.0" prefWidth="191.0" />
+            <PasswordField fx:id="tfPassword" prefHeight="26.0" prefWidth="293.0" />
          </children>
          <padding>
             <Insets right="50.0" top="30.0" />
@@ -52,9 +52,9 @@
    <bottom>
       <VBox alignment="TOP_CENTER" prefHeight="233.0" prefWidth="350.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnLogin" fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: green;" text="LOGIN" />
-            <Hyperlink id="hyRegistered" fx:id="hyRegistered" onAction="#register" text="Not registered? Join now" underline="true" />
-            <Hyperlink id="hyForgot" fx:id="hyForgot" onAction="#recover" text="Forgot Password? Recover it" underline="true" />
+            <Button id="btnLogin" fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="145.0" style="-fx-background-color: green;" text="INICIAR SESION" />
+            <Hyperlink id="hyRegistered" fx:id="hyRegistered" onAction="#register" text="No estas registrado? registrate ahora" underline="true" />
+            <Hyperlink id="hyForgot" fx:id="hyForgot" onAction="#recover" text="Has olvidado tu contraseña? recuperar contraseña" underline="true" />
          </children>
          <padding>
             <Insets top="15.0" />

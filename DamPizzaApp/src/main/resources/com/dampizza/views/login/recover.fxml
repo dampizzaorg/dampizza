@@ -23,7 +23,7 @@
                   <TextField fx:id="" prefHeight="19.0" prefWidth="215.0" />
                </children>
             </HBox>
-            <Button fx:id="btnRecover" onAction="#recoverPassword" mnemonicParsing="false" text="RECOVER PASSWORD" />
+            <Button fx:id="btnRecover" mnemonicParsing="false" onAction="#recoverPassword" text="RECUPERAR CONTRASEÑA" />
          </children>
          <padding>
             <Insets left="30.0" right="30.0" />
@@ -42,7 +42,7 @@
             <ImageView fx:id="imgBackground" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="FORGOT PASSWORD?">
+                  <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="¿HAS OLVIDADO TU CONTRASEÑA?">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -52,8 +52,8 @@
                         <Insets top="10.0" />
                      </padding>
                   </Separator>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="We just need your registered Email" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To sent you your new pasword" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Solo necesitamos tu email" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="para enviarte tu contraseña nueva" />
                </children>
             </VBox>
          </children>
