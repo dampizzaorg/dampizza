@@ -68,14 +68,14 @@ public class DrawerManager {
         } else if (usu == AppConstants.USER_MANAGER) {
             final Item managerItem = new ViewItem("Manager", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
             final Item managerOrderItem = new ViewItem("Manager Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_ORDER_VIEW);
-            final Item registerItem = new ViewItem("Register a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), SIGNUP_VIEW);
-            final Item managerDealerItem = new ViewItem("Delete a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_DEALER_VIEW);
+            //final Item registerItem = new ViewItem("Register a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), SIGNUP_VIEW);
+            final Item managerDealerItem = new ViewItem("Dealers", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_DEALER_VIEW);
             final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
             final Item logoutItem = new ViewItem("Logout", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
             final Item pizzaCreateItem= new ViewItem("Create Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
             final Item pizzaDeleteItem = new ViewItem("Delete Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_DELETE_VIEW);
             
-            drawer.getItems().addAll(managerItem, managerOrderItem,pizzaCreateItem ,pizzaDeleteItem,registerItem, profileItem,managerDealerItem,logoutItem);
+            drawer.getItems().addAll(managerItem, managerOrderItem,pizzaCreateItem ,pizzaDeleteItem,profileItem,managerDealerItem,logoutItem);
 
         } else if (usu == AppConstants.USER_DEALER){
             final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);

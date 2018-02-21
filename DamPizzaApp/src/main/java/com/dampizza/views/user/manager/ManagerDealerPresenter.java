@@ -72,7 +72,10 @@ public class ManagerDealerPresenter {
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
 
                 appBar.setVisible(true);
-
+                 
+                  appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
+                        -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
+                  
                 appBar.setTitleText("Repartidores");
 
                 try {
