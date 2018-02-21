@@ -167,27 +167,24 @@ public class OrderManagerImp implements OrderManagerInterface {
 
         try {
 //            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id in(select id from UserEntity where credential.username = "+user+")").list();
-//            List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
-
+          
+//              List<OrderEntity> orderEntities = session.createQuery("from OrderEntity where customer.id = " + umi.getSession().get("id") + " order by date").list();
+            
             Query query = session.createQuery(hql);
             query.setParameter("id", umi.getSession().get("id"));
             List<OrderEntity> orderEntities = query.list();
 
             if (orderEntities != null) {
                 // For each order entity create an add an orderDTO to orderList
+                
                 orderEntities.forEach(o -> orderList.add(new OrderDTO(
                         o.getId(), o.getDate(),
                         new UserDTO(o.getId(), o.getCustomer().getCredential().getUsername(), o.getCustomer().getName(),
                                 o.getCustomer().getSurnames(), o.getCustomer().getEmail(), o.getCustomer().getAddress()),
                         o.getAddress(), pmi.EntityToDTO(o.getProducts()),
-                        new UserDTO(
-                                o.getDealer() != null ? o.getDealer().getId() : null,
-                                o.getDealer() != null ? o.getDealer().getCredential().getUsername() : null,
-                                o.getDealer() != null ? o.getDealer().getName() : null,
-                                o.getDealer() != null ? o.getDealer().getSurnames() : null,
-                                o.getDealer() != null ? o.getDealer().getEmail() : null,
-                                o.getDealer() != null ? o.getDealer().getAddress() : null),
+                        null,
                         o.getStatus(), o.getTotal())));
+                       
             }
 
         } catch (HibernateException e) {
