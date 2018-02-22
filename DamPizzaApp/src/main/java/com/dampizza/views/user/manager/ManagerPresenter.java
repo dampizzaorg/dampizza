@@ -29,7 +29,7 @@ import javafx.scene.control.TabPane;
 
 /**
  * Presenter for manager_main.fxml
- *
+ * TODO: Check button visibility when changing tabs. Sometimes it doesn't work properly.
  * @author Carlos Santos
  */
 public class ManagerPresenter {
@@ -89,7 +89,7 @@ public class ManagerPresenter {
         });
     }
 
-    @FXML
+    
     public void loadPrep() {
         btnDelivered.setVisible(false);
         btnAdd.setVisible(true);
@@ -142,14 +142,15 @@ public class ManagerPresenter {
     }
 
     public void addListeners() {
+        
         /**
          * Populate lvPrep when tabPrep is selected
          */
-//        tabPrep.onSelectionChangedProperty().addListener((ov, oldTab, newTab) -> {
-//            if(newTab==tabPrep){
-//                loadPrep();
-//            }
-//        });
+        tabPrep.onSelectionChangedProperty().addListener((ov, oldTab, newTab) -> {
+            if(newTab==tabPrep){
+                loadPrep();
+            }
+        });
 
         /**
          * Enable/disable buttons on listview selected item change.
