@@ -49,6 +49,7 @@ public class DrawerManager {
         this.drawer = new NavigationDrawer();
         
         userType = (Integer)LogicFactory.getUserManager().getSession().get("type");
+        System.out.println(userType);
 
         NavigationDrawer.Header header = new NavigationDrawer.Header("DamPizza",
                 "Mobile App",
@@ -58,6 +59,7 @@ public class DrawerManager {
         /* CREATE NEW DRAWER ITEMS HERE*/
         /* CAMBIAR MENU DEPENDIENDO DEL USUARIO*/
         if (userType == AppConstants.USER_CUSTOMER) {
+            System.out.println("customer type");
             final Item customerItem = new ViewItem("Inicio", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), CUSTOMER_VIEW);
             final Item orderItem = new ViewItem("Hacer pedido", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), ORDER_CREATE_VIEW);
             final Item historyItem = new ViewItem("Mis pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), HISTORY_VIEW);
@@ -67,8 +69,10 @@ public class DrawerManager {
             final Item ownPizzaCreate= new ViewItem("Crear pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
 
             /* REMEMBER TO ADD ITEMS TO THE DRAWER */
+            drawer.getItems().clear();
             drawer.getItems().addAll(customerItem, orderItem, ownPizzaCreate, historyItem, profileItem, cartItem, logoutItem);
         } else if (userType == AppConstants.USER_MANAGER) {
+            System.out.println("manager type");
             final Item managerItem = new ViewItem("Pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
 //            final Item managerOrderItem = new ViewItem("Manager Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_ORDER_VIEW);
             //final Item registerItem = new ViewItem("Register a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), SIGNUP_VIEW);
@@ -81,6 +85,7 @@ public class DrawerManager {
             drawer.getItems().addAll(managerItem, pizzaCreateItem ,pizzaDeleteItem,profileItem,managerDealerItem,logoutItem);
 
         } else if (userType == AppConstants.USER_DEALER){
+            System.out.println("dellivery type");
             final Item profileItem = new ViewItem("Perfil", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
             final Item dealerItem = new ViewItem("Pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), DEALER_VIEW);
             final Item logoutItem = new ViewItem("Salir", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);

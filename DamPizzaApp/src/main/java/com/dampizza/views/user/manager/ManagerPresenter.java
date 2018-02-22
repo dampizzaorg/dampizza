@@ -16,6 +16,7 @@ import com.dampizza.util.LogicFactory;
 import com.dampizza.views.user.customer.HistoryPresenter;
 import com.gluonhq.charm.glisten.control.CharmListView;
 import com.gluonhq.charm.glisten.control.Toast;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class ManagerPresenter {
 
     private OrderManagerImp orderManager;
     private HashMap SESSION;
-    private ObservableList<OrderDTO> oblPrep;
+    private ObservableList<OrderDTO> oblPrep = FXCollections.observableArrayList(new ArrayList<>());
     private ObservableList<OrderDTO> oblOnDelivery;
     private ObservableList<OrderDTO> oblDelivered;
 
@@ -88,6 +89,7 @@ public class ManagerPresenter {
         });
     }
 
+    @FXML
     public void loadPrep() {
         btnDelivered.setVisible(false);
         btnAdd.setVisible(true);
@@ -143,9 +145,11 @@ public class ManagerPresenter {
         /**
          * Populate lvPrep when tabPrep is selected
          */
-        tabPrep.onSelectionChangedProperty().addListener((ov, oldTab, newTab) -> {
-            loadPrep();
-        });
+//        tabPrep.onSelectionChangedProperty().addListener((ov, oldTab, newTab) -> {
+//            if(newTab==tabPrep){
+//                loadPrep();
+//            }
+//        });
 
         /**
          * Enable/disable buttons on listview selected item change.
