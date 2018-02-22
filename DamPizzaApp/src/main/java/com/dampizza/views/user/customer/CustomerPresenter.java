@@ -56,7 +56,7 @@ public class CustomerPresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("DAMPIZZA 2018");
+                appBar.setTitleText("Inicio");
                 //Declaring action that will change the images automatic
                 EventHandler<ActionEvent> eventHandler = e -> {
                     image.setImage(new Image(images[i]));

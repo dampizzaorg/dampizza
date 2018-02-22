@@ -114,7 +114,7 @@ public class PizzaCreatePresenter implements Initializable {
     @FXML
     private void addIngredient() {
         //if selected is not null
-            MobileApplication.getInstance().showMessage("ESKEKIT");
+            //MobileApplication.getInstance().showMessage("ESKEKIT");
         if (cbIngredients.getSelectionModel().getSelectedIndex() != -1) {
             Integer selectedIndex = cbIngredients.getSelectionModel().getSelectedIndex();
             IngredientDTO selectedIngredient = availeableIngredients.get(selectedIndex);
@@ -179,7 +179,7 @@ public class PizzaCreatePresenter implements Initializable {
                 cleanData();
                 /*Toast t = new Toast(App.getBundle().getString("dampizza.views.user.common.createPizza.pizzaCreatedMessage"),LENGTH_LONG);
                 t.show();*/
-                MobileApplication.getInstance().showMessage(MANAGER_VIEW);
+                MobileApplication.getInstance().switchView(ORDER_CREATE_VIEW);
                 returnToPrev();
             } catch (ProductCreateException ex) {
                 Logger.getLogger(PizzaCreatePresenter.class.getName()).log(Level.SEVERE, null, ex);

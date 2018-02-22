@@ -62,7 +62,7 @@ public class RecoverPresenter {
                 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Recover");
+                appBar.setTitleText("Recuperar contraseña");
             }
         });
     }

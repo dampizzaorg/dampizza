@@ -58,32 +58,32 @@ public class DrawerManager {
         /* CREATE NEW DRAWER ITEMS HERE*/
         /* CAMBIAR MENU DEPENDIENDO DEL USUARIO*/
         if (userType == AppConstants.USER_CUSTOMER) {
-            final Item customerItem = new ViewItem("Customer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), CUSTOMER_VIEW);
-            final Item orderItem = new ViewItem("Create Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), ORDER_CREATE_VIEW);
-            final Item historyItem = new ViewItem("History Orders", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), HISTORY_VIEW);
-            final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
-            final Item logoutItem = new ViewItem("Logout", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
+            final Item customerItem = new ViewItem("Inicio", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), CUSTOMER_VIEW);
+            final Item orderItem = new ViewItem("Hacer pedido", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), ORDER_CREATE_VIEW);
+            final Item historyItem = new ViewItem("Mis pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), HISTORY_VIEW);
+            final Item profileItem = new ViewItem("Perfil", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
+            final Item logoutItem = new ViewItem("Salir", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
             final Item cartItem = new ViewItem("Carrito", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), CART_VIEW);
-            final Item ownPizzaCreate= new ViewItem("Create Own Pizza ", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
+            final Item ownPizzaCreate= new ViewItem("Crear pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
 
             /* REMEMBER TO ADD ITEMS TO THE DRAWER */
             drawer.getItems().addAll(customerItem, orderItem, ownPizzaCreate, historyItem, profileItem, cartItem, logoutItem);
         } else if (userType == AppConstants.USER_MANAGER) {
-            final Item managerItem = new ViewItem("Manager", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
-            final Item managerOrderItem = new ViewItem("Manager Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_ORDER_VIEW);
+            final Item managerItem = new ViewItem("Pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_VIEW);
+//            final Item managerOrderItem = new ViewItem("Manager Order", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_ORDER_VIEW);
             //final Item registerItem = new ViewItem("Register a dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), SIGNUP_VIEW);
-            final Item managerDealerItem = new ViewItem("Dealers", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_DEALER_VIEW);
-            final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
-            final Item logoutItem = new ViewItem("Logout", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
-            final Item pizzaCreateItem= new ViewItem("Create Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
-            final Item pizzaDeleteItem = new ViewItem("Delete Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_DELETE_VIEW);
+            final Item managerDealerItem = new ViewItem("Repartidores", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), MANAGER_DEALER_VIEW);
+            final Item profileItem = new ViewItem("Perfil", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
+            final Item logoutItem = new ViewItem("Salir", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
+            final Item pizzaCreateItem= new ViewItem("Crear Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_CREATE_VIEW);
+            final Item pizzaDeleteItem = new ViewItem("Eliminar Pizza", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PIZZA_DELETE_VIEW);
             
-            drawer.getItems().addAll(managerItem, managerOrderItem,pizzaCreateItem ,pizzaDeleteItem,profileItem,managerDealerItem,logoutItem);
+            drawer.getItems().addAll(managerItem, pizzaCreateItem ,pizzaDeleteItem,profileItem,managerDealerItem,logoutItem);
 
         } else if (userType == AppConstants.USER_DEALER){
-            final Item profileItem = new ViewItem("Profile", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
-            final Item dealerItem = new ViewItem("Dealer", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), DEALER_VIEW);
-            final Item logoutItem = new ViewItem("Logout", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
+            final Item profileItem = new ViewItem("Perfil", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), PROFILE_VIEW);
+            final Item dealerItem = new ViewItem("Pedidos", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), DEALER_VIEW);
+            final Item logoutItem = new ViewItem("Salir", MaterialDesignIcon.ACCOUNT_CIRCLE.graphic(), LOGIN_VIEW);
             
             drawer.getItems().addAll(dealerItem, profileItem,logoutItem);
         }

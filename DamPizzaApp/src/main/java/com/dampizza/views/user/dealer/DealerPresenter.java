@@ -71,7 +71,7 @@ public class DealerPresenter implements Initializable {
                 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Current Orders");
+                appBar.setTitleText("Pedidos");
                 
                 initClassic();
                 

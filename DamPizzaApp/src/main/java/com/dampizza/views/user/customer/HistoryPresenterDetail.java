@@ -70,7 +70,7 @@ public class HistoryPresenterDetail implements Initializable {
                 
                 appBar.setVisible(true);
                 
-                appBar.setTitleText("History Detail");
+                appBar.setTitleText("Detalles del pedido");
                 appBar.getActionItems().add(MaterialDesignIcon.ARROW_BACK.button(e -> 
                 back()));
                 

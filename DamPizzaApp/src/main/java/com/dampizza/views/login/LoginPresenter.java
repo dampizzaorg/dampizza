@@ -81,8 +81,8 @@ public class LoginPresenter {
                 appBar.setVisible(false);
 
                 appBar.setNavIcon(MaterialDesignIcon.ARROW_BACK.button(e
-                        -> System.out.println("Search")));
-                appBar.setTitleText("Login");
+                        -> System.out.println("Buscar")));
+                appBar.setTitleText("Iniciar sesión");
 
                 LogicFactory.getUserManager().getSession().clear();
                 

@@ -66,7 +66,7 @@ public class DealerOrderPresenter {
                 
                 appBar.getActionItems().add(MaterialDesignIcon.ARROW_BACK.button(e -> 
                         back()));
-                appBar.setTitleText("Manager order"); 
+                appBar.setTitleText("Detalles de pedido"); 
                 
                 taDatos.setEditable(false);
                 taDatos.setText(App.getCurrentOrder().getId()+"\n"+  App.getCurrentOrder().getDate()+"\n"+ App.getCurrentOrder().getAddress());
