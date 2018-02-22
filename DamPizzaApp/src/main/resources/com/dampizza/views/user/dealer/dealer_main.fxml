@@ -5,17 +5,22 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <View fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dampizza.views.user.dealer.DealerPresenter">
-   <top>
-      <VBox prefHeight="606.0" prefWidth="350.0" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane>
-               <content>
-                  <CharmListView id="lbOrders" fx:id="lbOrders" prefHeight="602.0" prefWidth="350.0" />
-               </content>
-            </ScrollPane>
-         </children>
-      </VBox>
-   </top>
+    <top>
+        <VBox prefHeight="606.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+            <children>
+                <ScrollPane>
+                    <content>
+                        <CharmListView id="lbOrders" fx:id="lbOrders" prefHeight="602.0" prefWidth="350.0">
+                            <placeholder>
+                                <Label text="No hay pedidos pendientes"/>
+                            </placeholder>
+                        </CharmListView>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </top>
 </View>

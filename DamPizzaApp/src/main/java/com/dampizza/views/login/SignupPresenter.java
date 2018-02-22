@@ -16,6 +16,7 @@ import com.dampizza.logic.io.UserManagerInterface;
 import com.dampizza.util.EncrypterUtil;
 import com.dampizza.util.EmailValidator;
 import com.dampizza.util.MailUtil;
+import com.gluonhq.charm.down.Platform;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.Alert;
 import com.gluonhq.charm.glisten.control.NavigationDrawer;
@@ -26,6 +27,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -78,7 +81,6 @@ public class SignupPresenter {
     private Label lbPassword;
     @FXML
     private Label lbRepeatPassword;
-    
 
     // </editor-fold>
     private UserManagerInterface userManager;
@@ -100,14 +102,14 @@ public class SignupPresenter {
 
             }
         });
-        
+
     }
 
     @FXML
     public void btnActionSignUp() throws IOException {
         if (formValid()) {
             //pair the surnames on one string
-            
+
             try {
                 //Unify the two surnames and we put % symbol to split them when program present this user
                 String surname = tfFirstSurName.getText() + "%" + tfSecondSurName.getText();
@@ -120,10 +122,12 @@ public class SignupPresenter {
                 UserDTO user = new UserDTO(tfUserName.getText(), tfName.getText(), surname, tfEmail.getText(), tfAddress.getText());
                 //upload the user
                 new UserManagerImp().createUser(user, password);
+
                 //SEND A EMAIL AFTER REGISTRATION
-                String message = "Welcome to DamPizza. You have been registered  sucesfully.You can now make orders of pizzas in the app. Have a nice day.\n"
-                        + "Username: " + tfUserName.getText() + "\nPassword: " + pfPassword.getText();
-                MailUtil.sendEmail(tfEmail.getText(), "Regsitration completed", message);
+                            String message = "Welcome to DamPizza. You have been registered  sucesfully.You can now make orders of pizzas in the app. Have a nice day.\n"
+                                    + "Username: " + tfUserName.getText() + "\nPassword: " + pfPassword.getText();
+                            MailUtil.sendEmail(tfEmail.getText(), "Regsitration completed", message);
+                
 
             } catch (UserCreateException ex) {
                 Logger.getLogger(SignupPresenter.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,7 +137,6 @@ public class SignupPresenter {
 
             goLogin();
             clearAll();
-
         }
     }
 
@@ -231,7 +234,7 @@ public class SignupPresenter {
         DrawerManager drawer = new DrawerManager();
         drawer.updateView(loginItem);
     }
-    
+
     private void checkViodFields() {
         String userName = tfUserName.getText();
         String name = tfName.getText();
