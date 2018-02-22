@@ -137,6 +137,15 @@ public class OrderCreatePresenter {
     
     public void addListeners() {
         /**
+         * Populate lvClassic when tabPrep is selected
+         */
+        tabClassic.onSelectionChangedProperty().addListener((ov, oldTab, newTab) -> {
+            if(newTab==tabClassic){
+                loadClassicPizzas();
+            }
+        });
+        
+        /**
          * Enable/disable buttons on listview selected item change.
          */
         lvClassic.selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
