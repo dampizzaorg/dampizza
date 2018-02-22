@@ -90,9 +90,9 @@ public class RegisterDealerPresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("SignUp");
+                appBar.setTitleText("Crear pizza");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e
-                        -> System.out.println("Search")));
+                        -> System.out.println("Buscar")));
 
             }
         });

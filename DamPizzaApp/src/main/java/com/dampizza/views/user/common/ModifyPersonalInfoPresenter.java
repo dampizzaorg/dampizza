@@ -94,13 +94,13 @@ public class ModifyPersonalInfoPresenter implements Initializable {
                 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Customer");
+                appBar.setTitleText("Perfil");
                 
                 userManager = LogicFactory.getUserManager();
                
                 //Puts a prompt text on password fields
-                tfPassword.setPromptText("Password here");
-                tfRepeatPassword.setPromptText("Repeat here");
+                tfPassword.setPromptText("Contraseña");
+                tfRepeatPassword.setPromptText("Repetir contraseña");
             
                 //Load the textField with the current user information.
                 tfUserName.setText((String )userManager.getSession().get("username"));

@@ -77,7 +77,7 @@ public class ManagerPresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Create order");
+                appBar.setTitleText("Pedidos");
                 
                 addListeners();
                 loadPrep();

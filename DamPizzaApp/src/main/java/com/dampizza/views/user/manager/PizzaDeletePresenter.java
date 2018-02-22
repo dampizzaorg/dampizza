@@ -57,7 +57,7 @@ public class PizzaDeletePresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Make pizza");
+                appBar.setTitleText("Eliminar pizza");
                 //Charege the window with some values
                 chargeData();
             }

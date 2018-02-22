@@ -5,6 +5,7 @@
  */
 package com.dampizza.views.user.customer;
 
+import com.dampizza.cfg.AppConstants;
 import com.gluonhq.charm.glisten.control.CharmListCell;
 import com.gluonhq.charm.glisten.control.ListTile;
 import com.dampizza.logic.dto.OrderDTO;
@@ -31,8 +32,19 @@ public class historyList extends CharmListCell<OrderDTO>{
     public void updateItem(OrderDTO item, boolean empty) {
         super.updateItem(item, empty);
         if (item != null && !empty) {
+            String status;
             
-            tile.textProperty().setAll(item.getId()+"  "+item.getDate(),item.getAddress());
+            if(item.getStatus()==AppConstants.STATUS_PREPARING){
+                status = "EN COCINA";
+            }else if(item.getStatus()==AppConstants.STATUS_ONDELIVER){
+                status = "EN REPARTO";
+            }else if(item.getStatus()==AppConstants.STATUS_DELIVERED){
+                status = "ENTREGADO";
+            }else{
+                status = "CANCELADO";
+            }
+                      
+            tile.textProperty().setAll(item.getId()+"  "+item.getDate(),item.getAddress()+status);
             setGraphic(tile);
             final Image image = new Image("img/history.png",50,50,false,false);
             if (image != null) {

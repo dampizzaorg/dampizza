@@ -68,7 +68,7 @@ public class CartPresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Create order");
+                appBar.setTitleText("Carrito");
 
                 lvCart.setCellFactory(p -> new ProductCLV());
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");

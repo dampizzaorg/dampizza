@@ -78,7 +78,7 @@ public class ManagerOrderPresenter {
 
                 appBar.getActionItems().add(MaterialDesignIcon.ARROW_BACK.button(e
                         -> back()));
-                appBar.setTitleText("Manager order");
+                appBar.setTitleText("Asignar repartidor");
 
                 SESSION = LogicFactory.getUserManager().getSession();
                 order = (OrderDTO) SESSION.get("transferOrder");

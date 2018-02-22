@@ -20,6 +20,7 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
 import static com.dampizza.App.MANAGER_ORDER_VIEW;
 import static com.dampizza.App.HISTORY_DETAIL;
+import com.dampizza.util.LogicFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,10 +61,10 @@ public class HistoryPresenter implements Initializable {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("History");
+                appBar.setTitleText("Mis pedidos");
                 appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e
-                        -> System.out.println("Search")));
-                omi = new OrderManagerImp();
+                        -> System.out.println("Buscar")));
+                omi = LogicFactory.getOrderManager();
                 initClassic();
             }
         });

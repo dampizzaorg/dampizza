@@ -71,7 +71,7 @@ public class OrderCreatePresenter {
 
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e
                         -> MobileApplication.getInstance().showLayer(App.MENU_LAYER)));
-                appBar.setTitleText("Create order");
+                appBar.setTitleText("Hacer pedido");
 
                 productManager = LogicFactory.getProductManager();
                 cart = (OrderDTO) LogicFactory.getUserManager().getSession().get("cart");
